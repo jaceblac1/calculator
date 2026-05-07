@@ -3,33 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator</title>
+    <title>Calculator App</title>
     <link rel="stylesheet" href="calculator.css" />
   </head>
   <body>
-    <p class="js-calculation calculation"></p>
+    <div class="calculator">
+      <input type="text" id="display" disabled />
 
-    <button class="js-number-button-1 js-gray-button">1</button>
-    <button class="js-number-button-2 js-gray-button">2</button>
-    <button class="js-number-button-3 js-gray-button">3</button>
-    <button class="js-operator-button-add js-orange-button">+</button>
-    <br />
-    <button class="js-number-button-4 js-gray-button">4</button>
-    <button class="js-number-button-5 js-gray-button">5</button>
-    <button class="js-number-button-6 js-gray-button">6</button>
-    <button class="js-operator-button-minus js-orange-button">-</button>
-    <br />
-    <button class="js-number-button-7 js-gray-button">7</button>
-    <button class="js-number-button-8 js-gray-button">8</button>
-    <button class="js-number-button-9 js-gray-button">9</button>
-    <button class="js-operator-button-divide js-orange-button">/</button>
-    <br />
-    <button class="js-decimal-button js-gray-button">.</button>
-    <button class="js-number-button-0 js-gray-button">0</button>
-    <button class="js-operator-button-multiply js-orange-button">*</button>
-    <button class="js-equal-button js-orange-button">=</button>
-    <br />
-    <button class="js-clear-button">Clear</button>
+      <div class="buttons">
+        <button data-action="clear">C</button>
+
+        <button data-value="/">/</button>
+
+        <button data-value="*">*</button>
+
+        <button data-action="delete">DEL</button>
+
+        <button data-value="7">7</button>
+
+        <button data-value="8">8</button>
+
+        <button data-value="9">9</button>
+
+        <button data-value="-">-</button>
+
+        <button data-value="4">4</button>
+
+        <button data-value="5">5</button>
+
+        <button data-value="6">6</button>
+
+        <button data-value="+">+</button>
+
+        <button data-value="1">1</button>
+
+        <button data-value="2">2</button>
+
+        <button data-value="3">3</button>
+
+        <button data-action="calculate">=</button>
+
+        <button data-value="0" class="zero">0</button>
+
+        <button data-value=".">.</button>
+      </div>
+    </div>
 
     <script src="calculator.js"></script>
   </body>
