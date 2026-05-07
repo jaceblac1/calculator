@@ -1,10 +1,10 @@
-const display = document.getElementById('display');
-const buttons = document.querySelectorAll('button');
+const display = document.getElementById("display");
+const buttons = document.querySelectorAll("button");
 
 loadSavedCalculation();
 
 buttons.forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
     const value = button.dataset.value;
     const action = button.dataset.action;
 
@@ -12,37 +12,33 @@ buttons.forEach((button) => {
       display.value += value;
 
       saveCalculation();
-
-    } else if (action === 'clear') {
-      display.value = '';
+    } else if (action === "clear") {
+      display.value = "";
 
       saveCalculation();
-
-    } else if (action === 'delete') {
+    } else if (action === "delete") {
       display.value = display.value.slice(0, -1);
 
       saveCalculation();
-
-    } else if (action === 'calculate') {
-      try{
+    } else if (action === "calculate") {
+      try {
         display.value = eval(display.value);
       } catch {
-        display.value = 'Error';
+        display.value = "Error";
       }
 
       saveCalculation();
-      
     }
   });
 });
 
 function saveCalculation() {
-  localStorage.setItem('calculatorData', display.value);
+  localStorage.setItem("calculatorData", display.value);
 }
 
 function loadSavedCalculation() {
-  const savedData = localStorage.getItem('calculatorData');
-  
+  const savedData = localStorage.getItem("calculatorData");
+
   if (savedData) {
     display.value = savedData;
   }
