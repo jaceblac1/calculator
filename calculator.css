@@ -9,7 +9,7 @@ body {
 }
 
 .calculator {
-  width: 300px;
+  width: min(300px, 90%);
   background-color: #2e2e2e;
   padding: 20px;
   border-radius: 10px;
@@ -50,4 +50,21 @@ button:hover {
 
 .zero {
   grid-column: span 2;
+}
+
+@media (max-width:500px) {
+  .calculator{
+    width: 90%;
+    padding: 15px;
+  }
+
+  #display {
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .buttons {
+    height: 50px;
+    font-size: 1rem;
+  }
 }
