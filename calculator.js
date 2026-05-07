@@ -1,111 +1,49 @@
-let calculation = localStorage.getItem("calculation") || "";
-// Display calculation when pages loads
-displayCalc();
+const display = document.getElementById('display');
+const buttons = document.querySelectorAll('button');
 
-function pressNumber(num) {
-  calculation += num;
-  displayCalc();
-  saveToStorage();
-}
+loadSavedCalculation();
 
-function pressOperator(op) {
-  calculation += op;
-  displayCalc();
-  saveToStorage();
-}
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const value = button.dataset.value;
+    const action = button.dataset.action;
 
-function pressEquals() {
-  calculation = eval(calculation);
-  displayCalc();
-  saveToStorage();
-}
+    if (value) {
+      display.value += value;
 
-function clearCalc() {
-  calculation = "";
-  displayCalc();
-  saveToStorage();
-}
+      saveCalculation();
 
-function displayCalc() {
-  document.querySelector(".js-calculation").innerHTML = calculation;
-}
+    } else if (action === 'clear') {
+      display.value = '';
 
-function saveToStorage() {
-  localStorage.setItem("calculation", calculation);
-}
+      saveCalculation();
 
-document.querySelector(".js-number-button-1").addEventListener("click", () => {
-  pressNumber(1);
-});
+    } else if (action === 'delete') {
+      display.value = display.value.slice(0, -1);
 
-document.querySelector(".js-number-button-2").addEventListener("click", () => {
-  pressNumber(2);
-});
+      saveCalculation();
 
-document.querySelector(".js-number-button-3").addEventListener("click", () => {
-  pressNumber(3);
-});
+    } else if (action === 'calculate') {
+      try{
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'Error';
+      }
 
-document.querySelector(".js-number-button-4").addEventListener("click", () => {
-  pressNumber(4);
-});
-
-document.querySelector(".js-number-button-5").addEventListener("click", () => {
-  pressNumber(5);
-});
-
-document.querySelector(".js-number-button-6").addEventListener("click", () => {
-  pressNumber(6);
-});
-
-document.querySelector(".js-number-button-7").addEventListener("click", () => {
-  pressNumber(7);
-});
-
-document.querySelector(".js-number-button-8").addEventListener("click", () => {
-  pressNumber(8);
-});
-
-document.querySelector(".js-number-button-9").addEventListener("click", () => {
-  pressNumber(9);
-});
-
-document.querySelector(".js-number-button-0").addEventListener("click", () => {
-  pressNumber(0);
-});
-
-document.querySelector(".js-decimal-button").addEventListener("click", () => {
-  pressNumber(".");
-});
-
-document
-  .querySelector(".js-operator-button-add")
-  .addEventListener("click", () => {
-    pressOperator("+");
+      saveCalculation();
+      
+    }
   });
-
-document
-  .querySelector(".js-operator-button-minus")
-  .addEventListener("click", () => {
-    pressOperator("-");
-  });
-
-document
-  .querySelector(".js-operator-button-divide")
-  .addEventListener("click", () => {
-    pressOperator("/");
-  });
-
-document
-  .querySelector(".js-operator-button-multiply")
-  .addEventListener("click", () => {
-    pressOperator("*");
-  });
-
-document.querySelector(".js-clear-button").addEventListener("click", () => {
-  clearCalc();
 });
 
-document.querySelector(".js-equal-button").addEventListener("click", () => {
-  pressEquals();
-});
+function saveCalculation() {
+  localStorage.setItem('calculatorData', display.value);
+}
+
+function loadSavedCalculation() {
+  const savedData = localStorage.getItem('calculatorData');
+  
+  if (savedData) {
+    display.value = savedData;
+  }
+}
